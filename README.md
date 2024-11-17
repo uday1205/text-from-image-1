@@ -29,12 +29,10 @@ cd ocr-text-detection
 
 
 	2.	Install the required dependencies:
-
 pip install -r requirements.txt
 
 
 	3.	Ensure EasyOCR and OpenCV are installed:
-
 pip install easyocr opencv-python
 
 
@@ -47,7 +45,6 @@ IMAGE_PATH = "path_to_your_image.jpeg"  # Replace with your image path
 
 
 	3.	Run the script:
-
 process_image(IMAGE_PATH)
 
 
