@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Extract text from images using EasyOCR technology">
+    <title>EasyOCR Text Extraction</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-file-alt"></i> Text Extraction from Images</h1>
+            <p class="subtitle">Upload an image to extract text using EasyOCR</p>
+        </header>
+
+        <div class="upload-box">
+            <div class="upload-area" id="drop-zone">
+                <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                <p>Drag & drop your image here or click to browse</p>
+                <input type="file" id="image-upload" accept="image/*">
+            </div>
+            <div class="controls">
+                <button id="extract-btn" class="primary-btn"><i class="fas fa-magic"></i> Extract Text</button>
+                <button id="clear-btn" class="secondary-btn"><i class="fas fa-trash"></i> Clear</button>
+            </div>
+            <div class="language-options">
+                <label for="language-select">Recognition Language:</label>
+                <select id="language-select">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                    <option value="fr">French</option>
+                    <option value="de">German</option>
+                    <option value="ru">Russian</option>
+                    <option value="zh">Chinese</option>
+                    <option value="ja">Japanese</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress" id="extraction-progress"></div>
+        </div>
+
+        <div class="result-section">
+            <div class="image-preview">
+                <h2><i class="fas fa-image"></i> Uploaded Image</h2>
+                <div class="preview-container">
+                    <img id="preview" src="#" alt="Preview">
+                    <div class="overlay" id="bounding-boxes"></div>
+                </div>
+                <div class="image-info">
+                    <span id="file-name">No file selected</span>
+                    <span id="file-size"></span>
+                </div>
+            </div>
+            <div class="text-output">
+                <h2><i class="fas fa-align-left"></i> Extracted Text</h2>
+                <div class="text-actions">
+                    <button id="copy-btn" class="action-btn" title="Copy to clipboard"><i class="fas fa-copy"></i></button>
+                    <button id="download-btn" class="action-btn" title="Download as TXT"><i class="fas fa-download"></i></button>
+                    <button id="edit-btn" class="action-btn" title="Enable editing"><i class="fas fa-edit"></i></button>
+                </div>
+                <textarea id="output-text" readonly placeholder="Extracted text will appear here"></textarea>
+                <div class="confidence-score">
+                    <span>Confidence: </span>
+                    <span id="confidence-value">-</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="settings-panel">
+            <h3><i class="fas fa-cog"></i> Advanced Settings</h3>
+            <div class="setting">
+                <label for="min-confidence">Minimum Confidence:</label>
+                <input type="range" id="min-confidence" min="0" max="100" value="70">
+                <span id="confidence-display">70%</span>
+            </div>
+            <div class="setting">
+                <label for="detail-level">Detection Detail:</label>
+                <select id="detail-level">
+                    <option value="fast">Fast (less accurate)</option>
+                    <option value="default" selected>Default</option>
+                    <option value="accurate">Accurate (slower)</option>
+                </select>
+            </div>
+            <div class="setting checkbox">
+                <input type="checkbox" id="show-boxes" checked>
+                <label for="show-boxes">Show bounding boxes</label>
+            </div>
+            <div class="setting checkbox">
+                <input type="checkbox" id="auto-extract">
+                <label for="auto-extract">Auto extract on upload</label>
+            </div>
+        </div>
+
+        <div class="history-section">
+            <h3><i class="fas fa-history"></i> Recent Extractions</h3>
+            <div id="history-items" class="history-items">
+                <!-- History items will be added dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Powered by EasyOCR | <a href="#" id="about-link">About</a> | <a href="#" id="help-link">Help</a></p>
+    </footer>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
